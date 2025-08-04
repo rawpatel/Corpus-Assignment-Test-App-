@@ -1,7 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.CorpusAssignmentTask" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+
+    <!-- Base application theme -->
+    <style name="Base.Theme.CorpusAssignmentTask" parent="Theme.SplashScreen">
+        <!-- Customize your theme here -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondary">@color/colorSecondary</item>
@@ -9,7 +10,14 @@
         <item name="android:navigationBarColor">@color/colorBackground</item>
     </style>
 
+    <!-- App theme -->
     <style name="Theme.CorpusAssignmentTask" parent="Base.Theme.CorpusAssignmentTask" />
 
+    <!-- Splash screen theme -->
+    <style name="Theme.CorpusAssignmentTask.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <!-- Optional: hide app content -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 </resources>

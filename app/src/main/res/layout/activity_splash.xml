@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="@dimen/splash_screen_width"
-        android:layout_height="@dimen/splash_screen_height"
+        android:layout_width="@dimen/image_banner_height"
+        android:layout_height="@dimen/image_banner_height"
         android:contentDescription="@string/app_name"
         android:src="@drawable/corpuslogo"
         app:layout_constraintBottom_toBottomOf="parent"
