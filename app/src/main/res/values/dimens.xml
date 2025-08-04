@@ -30,6 +30,6 @@
     <dimen name="image_banner_height">180dp</dimen>
 
     <!--Splash Screen -->
-    <dimen name="splash_screen_height">120dp</dimen>
-    <dimen name="splash_screen_width">120dp</dimen>
+    <dimen name="splash_screen_height">160dp</dimen>
+    <dimen name="splash_screen_width">160dp</dimen>
 </resources>

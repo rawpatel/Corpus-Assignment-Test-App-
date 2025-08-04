@@ -1,4 +1,4 @@
-package com.surendra.corpusassignmenttask.presentation.about
+package com.surendra.corpusassignmenttask.presentation.fragments.about
 
 import androidx.lifecycle.ViewModel
 

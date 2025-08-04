@@ -1,4 +1,4 @@
-package com.surendra.corpusassignmenttask.data.repository
+package com.surendra.corpusassignmenttask.utils
 
 import android.content.Context
 import android.content.SharedPreferences

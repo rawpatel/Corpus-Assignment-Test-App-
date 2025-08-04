@@ -2,11 +2,10 @@ package com.surendra.corpusassignmenttask.presentation.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import com.surendra.corpusassignmenttask.utils.PreferenceManager
 import com.surendra.corpusassignmenttask.presentation.login.LoginActivity
 import com.surendra.corpusassignmenttask.presentation.main.MainActivity
 import kotlinx.coroutines.delay

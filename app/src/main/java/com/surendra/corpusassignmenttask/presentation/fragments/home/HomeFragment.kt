@@ -1,4 +1,4 @@
-package com.surendra.corpusassignmenttask.presentation.home
+package com.surendra.corpusassignmenttask.presentation.fragments.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
