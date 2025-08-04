@@ -7,25 +7,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.surendra.corpusassignmenttask.R
+import com.surendra.corpusassignmenttask.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = AboutFragment()
-    }
-
-   // private val viewModel: AboutViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
+    private var _binding: FragmentAboutBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_about, container, false)
+        _binding = FragmentAboutBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAboutContent()
+    }
+
+    private fun setupAboutContent() {
+        binding.tvAboutTitle.text = getString(R.string.about_title)
+        binding.tvAboutDescription.text = getString(R.string.about_description)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

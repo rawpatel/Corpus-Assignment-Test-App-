@@ -23,8 +23,6 @@
     <dimen name="button_height">48dp</dimen>
     <dimen name="button_corner_radius">8dp</dimen>
 
-    <!-- Elevation -->
-    <dimen name="card_elevation">4dp</dimen>
 
     <!-- Image Sizes -->
     <dimen name="image_banner_height">180dp</dimen>
@@ -32,4 +30,36 @@
     <!--Splash Screen -->
     <dimen name="splash_screen_height">160dp</dimen>
     <dimen name="splash_screen_width">160dp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_extra_large">32dp</dimen>
+
+    <!-- Card Properties -->
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+
+    <!-- Banner Dimensions -->
+    <dimen name="banner_height">180dp</dimen>
+    <dimen name="banner_width">match_parent</dimen>
+
+    <!-- Carousel Item Dimensions -->
+    <dimen name="carousel_item_width">140dp</dimen>
+    <dimen name="carousel_item_height">100dp</dimen>
+    <dimen name="carousel_item_width_large">200dp</dimen>
+
+    <!-- Content Item Dimensions -->
+    <!-- Portrait (Movies) -->
+    <dimen name="portrait_item_width">120dp</dimen>
+    <dimen name="portrait_item_height">160dp</dimen>
+
+    <!-- Landscape (TV Channels) -->
+    <dimen name="landscape_item_width">140dp</dimen>
+    <dimen name="landscape_item_height">80dp</dimen>
+
+    <!-- Square (Apps) -->
+    <dimen name="square_item_size">100dp</dimen>
 </resources>
