@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Theme Colors -->
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryVariant">#3700B3</color>
+    <color name="colorSecondary">#03DAC5</color>
+
+    <!-- Backgrounds and Text -->
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorDivider">#BDBDBD</color>
+
+    <!-- CardView / RecyclerView -->
+    <color name="card_background">#F9F9F9</color>
+
+    <!-- Error / Alerts -->
+    <color name="colorError">#B00020</color>
 </resources>

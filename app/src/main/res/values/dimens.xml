@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Font Sizes -->
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_regular">14sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_xlarge">24sp</dimen>
+
+    <!-- Padding -->
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_regular">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_regular">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+
+    <!-- Button Sizes -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="card_elevation">4dp</dimen>
+
+    <!-- Image Sizes -->
+    <dimen name="image_banner_height">180dp</dimen>
+
+    <!--Splash Screen -->
+    <dimen name="splash_screen_height">120dp</dimen>
+    <dimen name="splash_screen_width">120dp</dimen>
+</resources>
