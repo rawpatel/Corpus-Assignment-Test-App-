@@ -1,23 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme -->
-    <style name="Base.Theme.CorpusAssignmentTask" parent="Theme.SplashScreen">
-        <!-- Customize your theme here -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    <!-- Main App Theme -->
+    <style name="Theme.CorpusAssignmentTask" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary Colors -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary Colors -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar & navigation -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">@color/colorBackground</item>
     </style>
 
-    <!-- App theme -->
-    <style name="Theme.CorpusAssignmentTask" parent="Base.Theme.CorpusAssignmentTask" />
+    <!-- Splash Theme using SplashScreen API -->
+    <style name="Theme.CorpusAssignmentTask.Splash" parent="Theme.SplashScreen">
+        <!-- Background color for splash -->
+        <item name="windowSplashScreenBackground">@color/colorPrimaryVariant</item>
 
-    <!-- Splash screen theme -->
-    <style name="Theme.CorpusAssignmentTask.Splash" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowBackground">@color/colorBackground</item>
-        <!-- Optional: hide app content -->
-        <item name="android:windowFullscreen">true</item>
+        <!-- App logo or splash image -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+
+        <!-- Optional: remove circle background -->
+        <item name="windowSplashScreenIconBackgroundColor">@null</item>
+
+        <!-- Theme applied after splash -->
+        <item name="postSplashScreenTheme">@style/Theme.CorpusAssignmentTask</item>
     </style>
 
 </resources>

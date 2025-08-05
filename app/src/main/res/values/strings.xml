@@ -5,7 +5,6 @@
 
 
     <!-- Login -->
-    <string name="login_title">Login</string>
     <string name="mobile_hint">Mobile Number</string>
     <string name="enter_otp">Enter OTP</string>
     <string name="otp_hint">OTP</string>
@@ -23,4 +22,33 @@
     <string name="section_content">Recommended</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="mobile_number_hint">Mobile Number</string>
+    <string name="about_title">About Us</string>
+    <string name="about_description">This is a sample app created for coding test demonstration. It showcases modern Android development practices including MVVM architecture, Material Design, and coroutines.</string>
+
+
+    <!-- Navigation -->
+    <string name="home">Home</string>
+    <string name="about">About</string>
+
+    <!-- Login -->
+    <string name="mobile_number">Mobile Number</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+
+    <!-- About Screen -->
+    <string name="features_title">Features</string>
+    <string name="feature_carousel_ads">Dynamic carousel advertisements</string>
+    <string name="feature_content_sections">Multiple content sections</string>
+    <string name="feature_offline_mode">Offline JSON data loading</string>
+
+    <!-- Content Descriptions -->
+    <string name="app_logo">App Logo</string>
+
+    <!-- Error Messages -->
+    <string name="error_loading_content">Failed to load content</string>
+    <string name="error_invalid_mobile">Please enter a valid mobile number</string>
+    <string name="error_invalid_otp">Please enter a valid OTP</string>
+
 </resources>

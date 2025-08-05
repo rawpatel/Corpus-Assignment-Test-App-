@@ -14,7 +14,7 @@
         android:padding="@dimen/spacing_medium">
 
         <TextView
-            android:id="@+id/textViewSectionTitle"
+            android:id="@+id/textViewTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/primary_text_color"
@@ -23,20 +23,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Entertainment" />
+            tools:text="Home Ads" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewContent"
+            android:id="@+id/recyclerViewCarousel"
             android:layout_width="0dp"
-            android:layout_height="@dimen/content_section_height"
+            android:layout_height="@dimen/carousel_item_height"
             android:layout_marginTop="@dimen/spacing_small"
             android:clipToPadding="false"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewSectionTitle"
-            tools:listitem="@layout/item_content_text" />
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            tools:listitem="@layout/item_carousel_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

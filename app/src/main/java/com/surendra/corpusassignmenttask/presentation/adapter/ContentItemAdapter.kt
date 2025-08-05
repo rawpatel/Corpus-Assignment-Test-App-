@@ -2,203 +2,135 @@ package com.surendra.corpusassignmenttask.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.surendra.corpusassignmenttask.R
 import com.surendra.corpusassignmenttask.data.model.ContentItem
-import com.surendra.corpusassignmenttask.databinding.ItemContentItemBinding
-import com.surendra.corpusassignmenttask.utils.Constants
-import com.surendra.corpusassignmenttask.utils.ExtensionsUtils.openUrl
-import com.surendra.corpusassignmenttask.utils.ValidationUtils
+import com.surendra.corpusassignmenttask.data.model.IconType
+import com.surendra.corpusassignmenttask.databinding.ItemContentLandscapeBinding
+import com.surendra.corpusassignmenttask.databinding.ItemContentPortraitBinding
+import com.surendra.corpusassignmenttask.databinding.ItemContentTextBinding
 
 class ContentItemAdapter(
-    private var layoutType: String,
-    private val onItemClick: ((ContentItem) -> Unit)? = null
-) : ListAdapter<ContentItem, ContentItemAdapter.ContentItemViewHolder>(ContentItemDiffCallback()) {
-
-    fun updateLayoutType(newLayoutType: String) {
-        this.layoutType = newLayoutType
+    private val contentType: String,
+    private val iconType: String?
+) : ListAdapter<ContentItem, RecyclerView.ViewHolder>(ContentItemDiffCallback()) {
+    
+    companion object {
+        private const val VIEW_TYPE_TEXT = 0
+        private const val VIEW_TYPE_LANDSCAPE = 1
+        private const val VIEW_TYPE_PORTRAIT = 2
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentItemViewHolder {
-        val binding = ItemContentItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return ContentItemViewHolder(binding, layoutType, onItemClick)
+    
+    override fun getItemViewType(position: Int): Int {
+        return when {
+            iconType == IconType.PORTRAIT_ICON_3 -> VIEW_TYPE_PORTRAIT
+            iconType == IconType.LANDSCAPE_ICON || iconType == IconType.LANDSCAPE_ICON_2 -> VIEW_TYPE_LANDSCAPE
+            else -> VIEW_TYPE_TEXT
+        }
     }
-
-    override fun onBindViewHolder(holder: ContentItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_PORTRAIT -> {
+                val binding = ItemContentPortraitBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+                PortraitViewHolder(binding)
+            }
+            VIEW_TYPE_LANDSCAPE -> {
+                val binding = ItemContentLandscapeBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+                LandscapeViewHolder(binding)
+            }
+            else -> {
+                val binding = ItemContentTextBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+                TextViewHolder(binding)
+            }
+        }
     }
-
-    class ContentItemViewHolder(
-        private val binding: ItemContentItemBinding,
-        private val layoutType: String,
-        private val onItemClick: ((ContentItem) -> Unit)?
+    
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = getItem(position)
+        when (holder) {
+            is PortraitViewHolder -> holder.bind(item)
+            is LandscapeViewHolder -> holder.bind(item)
+            is TextViewHolder -> holder.bind(item)
+        }
+    }
+    
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        // Set horizontal scrolling
+        if (recyclerView.layoutManager == null) {
+            recyclerView.layoutManager = LinearLayoutManager(
+                recyclerView.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        }
+    }
+    
+    inner class TextViewHolder(
+        private val binding: ItemContentTextBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
+        
         fun bind(item: ContentItem) {
-            // Reset visibility
-            binding.itemImage.isVisible = false
-            binding.itemTitle.isVisible = false
-            binding.itemId.isVisible = false
-            binding.actionButton.isVisible = false
-
-            when (layoutType) {
-                Constants.LAYOUT_TYPE_CAROUSEL -> setupCarouselItem(item)
-                Constants.LAYOUT_TYPE_PORTRAIT,
-                Constants.LAYOUT_TYPE_LANDSCAPE,
-                Constants.LAYOUT_TYPE_SQUARE -> setupContentItem(item)
-                else -> setupDefaultItem(item)
-            }
-
-            // Set click listeners
-            setupClickListeners(item)
-        }
-
-        private fun setupCarouselItem(item: ContentItem) {
-            binding.itemImage.isVisible = true
-
-            // Adjust layout params for carousel
-            adjustLayoutForCarousel()
-
-            item.mobileCarouselImage?.let { imageUrl ->
-                Glide.with(binding.root.context)
-                    .load(imageUrl)
-                    .placeholder(R.drawable.placeholder_image)
-                    .error(R.drawable.error_image)
-                    .centerCrop()
-                    .into(binding.itemImage)
-            }
-
-            // Show title if available
-            if (!item.title.isNullOrEmpty() && item.title != "GFGNL-Bigbannerad1") {
-                binding.itemTitle.isVisible = true
-                binding.itemTitle.text = item.title
-            }
-
-            // Show action button if action exists
-            if (!item.onScreenAction.isNullOrEmpty() && item.onScreenAction != Constants.ACTION_NONE) {
-                binding.actionButton.isVisible = true
-                binding.actionButton.text = item.onScreenAction
-            }
-        }
-
-        private fun setupContentItem(item: ContentItem) {
-            adjustLayoutForContentType()
-
-            // Show ID for content items
-            binding.itemId.isVisible = true
-            binding.itemId.text = "ID: ${item.id}"
-
-            // Show title or generate one
-            binding.itemTitle.isVisible = true
-            binding.itemTitle.text = item.title ?: "Content ${item.id}"
-
-            // Show appropriate placeholder
-            binding.itemImage.isVisible = true
-            loadPlaceholderImage()
-        }
-
-        private fun setupDefaultItem(item: ContentItem) {
-            binding.itemId.isVisible = true
-            binding.itemId.text = "ID: ${item.id}"
-
-            if (!item.title.isNullOrEmpty()) {
-                binding.itemTitle.isVisible = true
-                binding.itemTitle.text = item.title
-            }
-        }
-
-        private fun setupClickListeners(item: ContentItem) {
-            // Action button click
-            binding.actionButton.setOnClickListener {
-                handleActionClick(item)
-            }
-
-            // Item click
+            binding.textViewId.text = item.id.toString()
+            binding.textViewTitle.text = item.title ?: "Content ${item.id}"
+            
+            // Handle click
             binding.root.setOnClickListener {
-                onItemClick?.invoke(item) ?: handleDefaultClick(item)
+                // Handle item click
             }
-        }
-
-        private fun handleActionClick(item: ContentItem) {
-            when (item.onScreenAction) {
-                Constants.ACTION_LEARN_MORE, Constants.ACTION_PURCHASE -> {
-                    item.externalLink?.let { url ->
-                        if (ValidationUtils.isValidUrl(url)) {
-                            binding.root.context.openUrl(url)
-                        }
-                    }
-                }
-            }
-        }
-
-        private fun handleDefaultClick(item: ContentItem) {
-            // Handle share URL or external link
-            val urlToOpen = item.shareUrl?.takeIf { ValidationUtils.isValidUrl(it) }
-                ?: item.externalLink?.takeIf { ValidationUtils.isValidUrl(it) }
-
-            urlToOpen?.let { url ->
-                binding.root.context.openUrl(url)
-            }
-        }
-
-        private fun adjustLayoutForCarousel() {
-            val context = binding.root.context
-            val layoutParams = binding.itemImage.layoutParams
-            layoutParams.width = context.resources.getDimensionPixelSize(R.dimen.carousel_item_width_large)
-            layoutParams.height = context.resources.getDimensionPixelSize(R.dimen.carousel_item_height)
-            binding.itemImage.layoutParams = layoutParams
-        }
-
-        private fun adjustLayoutForContentType() {
-            val context = binding.root.context
-            val layoutParams = binding.itemImage.layoutParams
-
-            when (layoutType) {
-                Constants.LAYOUT_TYPE_PORTRAIT -> {
-                    layoutParams.width = context.resources.getDimensionPixelSize(R.dimen.portrait_item_width)
-                    layoutParams.height = context.resources.getDimensionPixelSize(R.dimen.portrait_item_height)
-                }
-                Constants.LAYOUT_TYPE_SQUARE -> {
-                    val size = context.resources.getDimensionPixelSize(R.dimen.square_item_size)
-                    layoutParams.width = size
-                    layoutParams.height = size
-                }
-                Constants.LAYOUT_TYPE_LANDSCAPE -> {
-                    layoutParams.width = context.resources.getDimensionPixelSize(R.dimen.landscape_item_width)
-                    layoutParams.height = context.resources.getDimensionPixelSize(R.dimen.landscape_item_height)
-                }
-            }
-            binding.itemImage.layoutParams = layoutParams
-        }
-
-        private fun loadPlaceholderImage() {
-            val placeholderRes = when (layoutType) {
-                Constants.LAYOUT_TYPE_PORTRAIT -> R.drawable.placeholder_portrait
-                Constants.LAYOUT_TYPE_SQUARE -> R.drawable.placeholder_square
-                else -> R.drawable.placeholder_landscape
-            }
-
-            Glide.with(binding.root.context)
-                .load(placeholderRes)
-                .into(binding.itemImage)
         }
     }
-
-    class ContentItemDiffCallback : DiffUtil.ItemCallback<ContentItem>() {
-        override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
-            return oldItem.id == newItem.id
+    
+    inner class LandscapeViewHolder(
+        private val binding: ItemContentLandscapeBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        
+        fun bind(item: ContentItem) {
+            binding.textViewId.text = item.id.toString()
+            binding.textViewTitle.text = item.title ?: "Content ${item.id}"
+            
+            // You can load images here if needed for landscape items
+            // For now, showing ID as per requirement
+            
+            binding.root.setOnClickListener {
+                // Handle item click
+            }
         }
-
-        override fun areContentsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
-            return oldItem == newItem
+    }
+    
+    inner class PortraitViewHolder(
+        private val binding: ItemContentPortraitBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        
+        fun bind(item: ContentItem) {
+            binding.textViewId.text = item.id.toString()
+            binding.textViewTitle.text = item.title ?: "Content ${item.id}"
+            
+            // You can load images here if needed for portrait items
+            // For now, showing ID as per requirement
+            
+            binding.root.setOnClickListener {
+                // Handle item click
+            }
         }
+    }
+}
+
+class ContentItemDiffCallback : DiffUtil.ItemCallback<ContentItem>() {
+    override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
+        return oldItem.id == newItem.id
+    }
+    
+    override fun areContentsTheSame(oldItem: ContentItem, newItem: ContentItem): Boolean {
+        return oldItem == newItem
     }
 }

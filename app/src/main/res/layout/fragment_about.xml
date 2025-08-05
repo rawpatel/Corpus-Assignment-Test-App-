@@ -1,13 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.about.AboutFragment">
+    android:background="@color/background_color"
+    android:padding="@dimen/spacing_large">
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="@dimen/logo_size"
+        android:layout_height="@dimen/logo_size"
+        android:layout_marginTop="@dimen/spacing_extra_large"
+        android:contentDescription="@string/app_logo"
+        android:src="@drawable/corpuslogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/textViewAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:textColor="@color/primary_text_color"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewLogo"
+        tools:text="Home Content App" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textViewVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAppName"
+        tools:text="Version 1.0.0" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_extra_large"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewVersion">
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_medium"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/text_size_medium"
+            android:lineSpacingMultiplier="1.2"
+            tools:text="This app displays home content with various sections including entertainment, channels, OTT apps, music, and movies." />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewFeatures"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewDescription">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/features_title"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feature_carousel_ads"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="@dimen/text_size_small"
+                android:drawableStart="@drawable/ic_check"
+                android:drawablePadding="@dimen/spacing_small"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/spacing_extra_small" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feature_content_sections"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="@dimen/text_size_small"
+                android:drawableStart="@drawable/ic_check"
+                android:drawablePadding="@dimen/spacing_small"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/spacing_extra_small" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feature_offline_mode"
+                android:textColor="@color/secondary_text_color"
+                android:textSize="@dimen/text_size_small"
+                android:drawableStart="@drawable/ic_check"
+                android:drawablePadding="@dimen/spacing_small"
+                android:gravity="center_vertical" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewDeveloper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:textColor="@color/secondary_text_color"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toTopOf="@id/buttonLogout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Developed with ❤️" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="@string/logout"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/error_color"
+        app:cornerRadius="@dimen/button_corner_radius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

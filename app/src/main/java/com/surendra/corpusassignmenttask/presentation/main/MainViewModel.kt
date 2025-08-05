@@ -1,12 +1,11 @@
 package com.surendra.corpusassignmenttask.presentation.main
 
+/**
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.surendra.corpusassignmenttask.data.model.ContentSection
-import com.surendra.corpusassignmenttask.data.repository.ContentRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
@@ -28,7 +27,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 val sections = repository.getContentSections()
                 _contentSections.value = sections
-                _error.value = null
+                _error.value = " "
             } catch (e: Exception) {
                 _error.value = e.message ?: "Unknown error occurred"
             } finally {
@@ -37,3 +36,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 }
+
+ **/

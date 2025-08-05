@@ -14,7 +14,7 @@
         android:layout_width="@dimen/zero_dp"
         android:layout_height="wrap_content"
         app:boxBackgroundMode="outline"
-        app:boxStrokeColor="@color/colorPrimary"
+        app:boxStrokeColor="@color/primary_color"
         android:hint="@string/enter_mobile"
         app:hintEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"

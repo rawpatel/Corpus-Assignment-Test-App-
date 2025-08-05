@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.surendra.corpusassignmenttask.R
 import com.surendra.corpusassignmenttask.utils.PreferenceManager
 import com.surendra.corpusassignmenttask.databinding.ActivityLoginBinding
 import com.surendra.corpusassignmenttask.presentation.main.MainActivity
@@ -84,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 // Show error
                 binding.otpInputLayout.isVisible = false
-                binding.phoneInputLayout.error = getString(R.string.invalid_mobile)
+                binding.phoneInputLayout.error = "Please enter valid 10-digit mobile number"
                 binding.btnLogin.isEnabled = false
             }
         }

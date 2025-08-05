@@ -28,10 +28,11 @@
     <dimen name="image_banner_height">180dp</dimen>
 
     <!--Splash Screen -->
-    <dimen name="splash_screen_height">160dp</dimen>
-    <dimen name="splash_screen_width">160dp</dimen>
+    <dimen name="splash_screen_height">250dp</dimen>
+    <dimen name="splash_screen_width">250dp</dimen>
 
     <!-- Spacing -->
+    <dimen name="spacing_extra_small">4dp</dimen>
     <dimen name="spacing_tiny">4dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
@@ -44,7 +45,6 @@
 
     <!-- Banner Dimensions -->
     <dimen name="banner_height">180dp</dimen>
-    <dimen name="banner_width">match_parent</dimen>
 
     <!-- Carousel Item Dimensions -->
     <dimen name="carousel_item_width">140dp</dimen>
@@ -62,4 +62,31 @@
 
     <!-- Square (Apps) -->
     <dimen name="square_item_size">100dp</dimen>
+
+    <dimen name="image_height">200dp</dimen>
+
+
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_extra_small">10sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_extra_large">24sp</dimen>
+
+
+
+
+    <!-- Content Section Dimensions -->
+    <dimen name="content_section_height">140dp</dimen>
+    <dimen name="content_item_width">100dp</dimen>
+    <dimen name="content_item_height">120dp</dimen>
+
+
+    <!-- ID Circle Dimensions -->
+    <dimen name="id_circle_size">32dp</dimen>
+    <dimen name="id_circle_size_small">24dp</dimen>
+
+    <!-- Logo Size -->
+    <dimen name="logo_size">80dp</dimen>
 </resources>

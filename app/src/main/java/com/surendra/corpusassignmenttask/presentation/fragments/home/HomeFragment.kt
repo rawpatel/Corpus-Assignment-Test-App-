@@ -1,25 +1,25 @@
 package com.surendra.corpusassignmenttask.presentation.fragments.home
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.surendra.corpusassignmenttask.databinding.FragmentHomeBinding
-import com.surendra.corpusassignmenttask.presentation.adapter.ContentSectionAdapter
-import com.surendra.corpusassignmenttask.presentation.main.MainViewModel
+import com.surendra.corpusassignmenttask.presentation.adapter.HomeContentAdapter
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by activityViewModels()
-    private lateinit var sectionAdapter: ContentSectionAdapter
+    private val homeViewModel: HomeViewModel by activityViewModels()
+    private lateinit var homeContentAdapter: HomeContentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,44 +35,49 @@ class HomeFragment : Fragment() {
 
         setupRecyclerView()
         observeViewModel()
-
-        // Load content only if not already loaded
-        if (viewModel.contentSections.value == null) {
-            viewModel.loadContent()
-        }
+        loadData()
     }
 
     private fun setupRecyclerView() {
-        sectionAdapter = ContentSectionAdapter()
-        binding.recyclerView.apply {
+        homeContentAdapter = HomeContentAdapter()
+        binding.recyclerViewHome.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = sectionAdapter
-            // Add spacing between sections
-            addItemDecoration(androidx.recyclerview.widget.DividerItemDecoration(
-                requireContext(),
-                androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
-            ))
+            adapter = homeContentAdapter
+            setHasFixedSize(true)
         }
     }
 
     private fun observeViewModel() {
-        viewModel.contentSections.observe(viewLifecycleOwner) { sections ->
-            sectionAdapter.submitList(sections)
-        }
-
-        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBar.isVisible = isLoading
-        }
-
-        viewModel.error.observe(viewLifecycleOwner) { error ->
-            error?.let {
-                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG)
-                    .setAction("Retry") {
-                        viewModel.loadContent()
-                    }
-                    .show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.homeContent.collect { contentList ->
+                if (contentList.isNotEmpty()) {
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerViewHome.visibility = View.VISIBLE
+                    homeContentAdapter.submitList(contentList)
+                }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.isLoading.collect { isLoading ->
+                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            homeViewModel.error.collect { errorMessage ->
+                errorMessage?.let {
+                    binding.textViewError.text = it
+                    binding.textViewError.visibility = View.VISIBLE
+                    binding.recyclerViewHome.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    private fun loadData() {
+        homeViewModel.loadHomeContent(requireContext())
     }
 
     override fun onDestroyView() {
