@@ -69,24 +69,3 @@ data class ContentItem(
     @SerializedName("franchiseId")
     val franchiseId: Int? = null
 )
-
-// Content Types Constants
-object ContentType {
-    const val CAROUSEL_AD = "CAROUSEL_AD"
-    const val LTV = "LTV"
-    const val VOD = "VOD"
-    const val APPSTORE = "APPSTORE"
-}
-
-// Icon Types Constants
-object IconType {
-    const val LANDSCAPE_ICON = "LANDSCAPE_ICON"
-    const val LANDSCAPE_ICON_2 = "LANDSCAPE_ICON_2"
-    const val PORTRAIT_ICON_3 = "PORTRAIT_ICON_3"
-}
-
-// Ad Image Types Constants
-object AdImageType {
-    const val TOP_BANNER = "TopBanner"
-    const val MID_ROW_SMALL_BANNER = "MidRowSmallBanner"
-}

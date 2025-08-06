@@ -7,26 +7,28 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.surendra.corpusassignmenttask.data.model.ContentItem
-import com.surendra.corpusassignmenttask.data.model.IconType
 import com.surendra.corpusassignmenttask.databinding.ItemContentLandscapeBinding
 import com.surendra.corpusassignmenttask.databinding.ItemContentPortraitBinding
 import com.surendra.corpusassignmenttask.databinding.ItemContentTextBinding
+import com.surendra.corpusassignmenttask.utils.Constants
+import com.surendra.corpusassignmenttask.utils.Constants.IconType.LANDSCAPE_ICON
+import com.surendra.corpusassignmenttask.utils.Constants.IconType.PORTRAIT_ICON_3
+import com.surendra.corpusassignmenttask.utils.Constants.VIEW_TYPE_LANDSCAPE
+import com.surendra.corpusassignmenttask.utils.Constants.VIEW_TYPE_PORTRAIT
+import com.surendra.corpusassignmenttask.utils.Constants.VIEW_TYPE_TEXT
 
 class ContentItemAdapter(
     private val contentType: String,
     private val iconType: String?
 ) : ListAdapter<ContentItem, RecyclerView.ViewHolder>(ContentItemDiffCallback()) {
     
-    companion object {
-        private const val VIEW_TYPE_TEXT = 0
-        private const val VIEW_TYPE_LANDSCAPE = 1
-        private const val VIEW_TYPE_PORTRAIT = 2
-    }
+
+
     
     override fun getItemViewType(position: Int): Int {
         return when {
-            iconType == IconType.PORTRAIT_ICON_3 -> VIEW_TYPE_PORTRAIT
-            iconType == IconType.LANDSCAPE_ICON || iconType == IconType.LANDSCAPE_ICON_2 -> VIEW_TYPE_LANDSCAPE
+            iconType == PORTRAIT_ICON_3 -> VIEW_TYPE_PORTRAIT
+            iconType == LANDSCAPE_ICON || iconType == Constants.IconType.LANDSCAPE_ICON_2 -> VIEW_TYPE_LANDSCAPE
             else -> VIEW_TYPE_TEXT
         }
     }

@@ -37,10 +37,10 @@ class AboutFragment : Fragment() {
 
     private fun setupViews() {
         binding.apply {
-            textViewAppName.text = "Home Content App"
-            textViewVersion.text = "Version 1.0.0"
+            textViewAppName.text = getString(R.string.about_title)
+            textViewVersion.text = getString(R.string.version)
             textViewDescription.text = getString(R.string.about_description)
-            textViewDeveloper.text = "Developed"
+            textViewDeveloper.text = getString(R.string.developer)
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.surendra.corpusassignmenttask.data.model.HomeContent
 import com.surendra.corpusassignmenttask.data.model.HomeResponse
+import com.surendra.corpusassignmenttask.utils.Constants.STATUS_CODE_SUCCESS
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -17,7 +18,7 @@ class HomeRepository {
             val jsonString = loadJsonFromAssets(context, "carousal.json")
             val homeResponse = gson.fromJson(jsonString, HomeResponse::class.java)
             
-            if (homeResponse.responseStatus.statusCode == "200") {
+            if (homeResponse.responseStatus.statusCode == STATUS_CODE_SUCCESS) {
                 homeResponse.content
             } else {
                 throw Exception("API Error: ${homeResponse.responseStatus.statusMessage}")

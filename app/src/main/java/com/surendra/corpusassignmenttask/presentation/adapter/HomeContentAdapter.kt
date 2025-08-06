@@ -5,28 +5,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.surendra.corpusassignmenttask.data.model.ContentType
 import com.surendra.corpusassignmenttask.data.model.HomeContent
 import com.surendra.corpusassignmenttask.databinding.ItemCarouselAdBinding
 import com.surendra.corpusassignmenttask.databinding.ItemContentSectionBinding
+import com.surendra.corpusassignmenttask.utils.Constants
+import com.surendra.corpusassignmenttask.utils.Constants.CAROUSEL_AD
 
 class HomeContentAdapter : ListAdapter<HomeContent, RecyclerView.ViewHolder>(HomeDiffCallback()) {
 
-    companion object {
-        private const val VIEW_TYPE_CAROUSEL_AD = 0
-        private const val VIEW_TYPE_CONTENT_SECTION = 1
-    }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position).contentType) {
-            ContentType.CAROUSEL_AD -> VIEW_TYPE_CAROUSEL_AD
-            else -> VIEW_TYPE_CONTENT_SECTION
+            CAROUSEL_AD -> Constants.VIEW_TYPE_CAROUSEL_AD
+            else -> Constants.VIEW_TYPE_CONTENT_SECTION
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            VIEW_TYPE_CAROUSEL_AD -> {
+            Constants.VIEW_TYPE_CAROUSEL_AD -> {
                 val binding = ItemCarouselAdBinding.inflate(
                     LayoutInflater.from(parent.context), parent, false
                 )
